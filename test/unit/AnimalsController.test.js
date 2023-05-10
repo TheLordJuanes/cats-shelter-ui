@@ -70,4 +70,27 @@ describe('Animal Controller Unit Tests', () => {
         expect(actualResponse.data).to.be.eql(listToGet);
         expect(actualResponse.data).to.have.length(2);
     });
+
+    it('Test Delete Animal', async () => {
+        // Arrange
+        const animalToDelete = {
+            name: "manchas",
+            breed: "Bengali",
+            gender: "Female",
+            vaccinated: true
+        }
+
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 200,
+            });
+        });
+
+        // Act
+        const actualResponse = await AnimalController.delete(animalToDelete.name);
+
+        // Assert
+        expect(actualResponse.status).to.be.eql(200);
+    });
 })
