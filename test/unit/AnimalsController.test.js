@@ -36,4 +36,38 @@ describe('Animal Controller Unit Tests', () => {
         expect(actualResponse.status).to.be.eql(201);
         expect(actualResponse.data).to.be.eql(animalToRegister);
     });
+
+    it('Test List Animals', async () => {
+        // Arrange
+        const listToGet = [
+            {
+                name: "manchas",
+                breed: "Bengali",
+                gender: "Female",
+                vaccinated: true
+            },
+            {
+                name: "Bigotes",
+                breed: "Birmano",
+                gender: "Male",
+                vaccinated: false
+            }
+        ];
+
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 200,
+                response: listToGet,
+            });
+        });
+
+        // Act
+        const actualResponse = await AnimalController.list();
+
+        // Assert
+        expect(actualResponse.status).to.be.eql(200);
+        expect(actualResponse.data).to.be.eql(listToGet);
+        expect(actualResponse.data).to.have.length(2);
+    });
 })
