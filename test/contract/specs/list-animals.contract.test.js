@@ -4,11 +4,11 @@ import { AnimalController } from '../../../controllers/AnimalsController.js';
 import { expect } from 'chai';
 
 describe('Animal Service - List animals', () => {
-    describe('When a request to list all animals is made', () => {
+    describe('When a request to list all cats is made', () => {
         before(async () => {
             await provider.setup();
             await provider.addInteraction({
-                uponReceiving: 'a request to list all animals',
+                uponReceiving: 'a request to list all cats',
                 state: "has animals",
                 withRequest: {
                     method: 'GET',
