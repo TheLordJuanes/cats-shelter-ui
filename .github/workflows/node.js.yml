@@ -15,8 +15,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build
-    - run: npm i -D @pact-foundation/pact mocha chai
-    - run: npm i dotenv
     - name: Run contract tests
       env:
         API: http://127.0.0.1:8080
