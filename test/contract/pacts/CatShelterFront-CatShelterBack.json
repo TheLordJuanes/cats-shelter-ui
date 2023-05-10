@@ -46,8 +46,24 @@
       }
     },
     {
+      "description": "a request to delete a cat",
+      "providerState": "has animals to delete",
+      "request": {
+        "matchingRules": {
+          "$.path": {
+            "match": "type"
+          }
+        },
+        "method": "DELETE",
+        "path": "/animals/{name}"
+      },
+      "response": {
+        "status": 204
+      }
+    },
+    {
       "description": "a request to list all cats",
-      "providerState": "has animals",
+      "providerState": "has animals to get",
       "request": {
         "method": "GET",
         "path": "/animals"

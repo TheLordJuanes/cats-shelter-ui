@@ -83,7 +83,7 @@ describe('Animal Controller Unit Tests', () => {
         moxios.wait(() => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
-                status: 200,
+                status: 204,
             });
         });
 
@@ -91,7 +91,7 @@ describe('Animal Controller Unit Tests', () => {
         const actualResponse = await AnimalController.delete(animalToDelete.name);
 
         // Assert
-        expect(actualResponse.status).to.be.eql(200);
+        expect(actualResponse.status).to.be.eql(204);
     });
 
     it('Test Get Animal', async () => {
