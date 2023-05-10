@@ -14,7 +14,6 @@ jobs:
         node-version: 18.x
         cache: 'npm'
     - run: npm ci
-    - run: npm run build
     - name: Run contract tests
       env:
         API: http://127.0.0.1:8080
