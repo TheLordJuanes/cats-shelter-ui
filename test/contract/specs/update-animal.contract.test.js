@@ -3,15 +3,15 @@ import { Matchers } from '@pact-foundation/pact';
 import { AnimalController } from '../../../controllers/AnimalsController.js';
 import { expect } from 'chai';
 
-describe('Animal Service - Get animal', () => {
-    describe('When a request to get a cat is made', () => {
+describe('Animal Service - Update animal', () => {
+    describe('When a request to update a cat is made', () => {
         before(async () => {
             await provider.setup();
             await provider.addInteraction({
-                uponReceiving: 'a request to get a cat',
-                state: "has animal to get",
+                uponReceiving: 'a request to update a cat',
+                state: "has animal to update",
                 withRequest: {
-                    method: 'GET',
+                    method: 'PUT',
                     path: Matchers.string('/animals/{name}')
                 },
                 willRespondWith: {
@@ -36,7 +36,7 @@ describe('Animal Service - Get animal', () => {
                 vaccinated: true
             }
 
-            const response = await AnimalController.getAnimal(manchasCat.name);
+            const response = await AnimalController.updateAnimal(manchasCat.name);
             const responseBody = response.data;
 
             // Verifying response is not undefined
