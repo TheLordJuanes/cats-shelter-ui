@@ -4,7 +4,49 @@
   },
   "interactions": [
     {
-      "description": "a request to list all animals",
+      "description": "a request to get a cat",
+      "providerState": "has animal",
+      "request": {
+        "matchingRules": {
+          "$.path": {
+            "match": "type"
+          }
+        },
+        "method": "GET",
+        "path": "/animals/{name}"
+      },
+      "response": {
+        "body": {
+          "breed": "Bengali",
+          "gender": "Female",
+          "name": "Manchas",
+          "vaccinated": true
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.breed": {
+            "match": "type"
+          },
+          "$.body.gender": {
+            "match": "type"
+          },
+          "$.body.name": {
+            "match": "type"
+          },
+          "$.body.vaccinated": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to list all cats",
       "providerState": "has animals",
       "request": {
         "method": "GET",
