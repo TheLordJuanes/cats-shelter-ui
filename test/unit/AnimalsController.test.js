@@ -93,4 +93,29 @@ describe('Animal Controller Unit Tests', () => {
         // Assert
         expect(actualResponse.status).to.be.eql(200);
     });
+
+    it('Test Get Animal', async () => {
+        // Arrange
+        const animalToGet = {
+            name: "manchas",
+            breed: "Bengali",
+            gender: "Female",
+            vaccinated: true
+        }
+
+        moxios.wait(() => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 200,
+                response: animalToGet,
+            });
+        });
+
+        // Act
+        const actualResponse = await AnimalController.getAnimal(animalToGet.name);
+
+        // Assert
+        expect(actualResponse.status).to.be.eql(200);
+        expect(actualResponse.data).to.be.eql(animalToGet);
+    });
 })
