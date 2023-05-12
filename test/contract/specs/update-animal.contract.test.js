@@ -12,7 +12,13 @@ describe('Animal Service - Update animal', () => {
                 state: "has animal to update",
                 withRequest: {
                     method: 'PUT',
-                    path: Matchers.string('/animals/{name}')
+                    path: Matchers.string('/animals/{name}'),
+                    body: Matchers.somethingLike({
+                        name: Matchers.like('Manchas'),
+                        breed: Matchers.like("Bengali"),
+                        gender: Matchers.like("Female"),
+                        vaccinated: Matchers.boolean(true)
+                    })
                 },
                 willRespondWith: {
                     status: 200,
@@ -36,7 +42,7 @@ describe('Animal Service - Update animal', () => {
                 vaccinated: true
             }
 
-            const response = await AnimalController.updateAnimal(manchasCat.name);
+            const response = await AnimalController.updateAnimal(manchasCat.name, manchasCat);
             const responseBody = response.data;
 
             // Verifying response is not undefined
